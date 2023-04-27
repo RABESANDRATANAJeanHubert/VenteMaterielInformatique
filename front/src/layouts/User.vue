@@ -3,7 +3,6 @@
 <template>
   <q-layout view="hHh Lpr fFf">
     <!-- Be sure to play with the Layout demo on docs -->
-
     <!-- (Optional) The Header -->
     <q-header class="bg-white">
       <q-toolbar class="text-black">
@@ -23,7 +22,7 @@
           icon="assignment"
           to="about"
           replace
-          label="Nous connaitre"
+          label="Nos équipe"
           active-class="text-negative"
         />
         <q-route-tab
@@ -45,7 +44,7 @@
     </q-header>
 
     <!-- (Optional) The Footer -->
-    <q-footer>
+    <!-- <q-footer>
       <q-tabs switch-indicator>
         <q-route-tab icon="map" to="/your/route" replace label="One Tab" />
         <q-route-tab icon="assignment" to="posts" replace label="Other Tab" />
@@ -55,7 +54,7 @@
         <q-btn flat round dense icon="menu" @click="leftDrawer = !leftDrawer" />
         <q-toolbar-title> Footer </q-toolbar-title>
       </q-toolbar>
-    </q-footer>
+    </q-footer> -->
 
     <!-- (Optional) A Drawer; you can add one more with side="right" or change this one's side -->
     <q-drawer

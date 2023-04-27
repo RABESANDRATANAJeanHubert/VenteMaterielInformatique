@@ -1,9 +1,9 @@
-import express, { Application } from 'express'; 
+import express, { Application } from 'express';
+const dotEnv =  require('dotenv')
+dotEnv.config(); 
 import todoRoutes from '../src/routes/todos'
-const PORT = 3000; 
+const PORT = process.env.APP_PORT; 
 const app: Application = express(); 
-
-
 app.use("/todo",todoRoutes);
 app.get('/', (req, res) => res.send('Express & Node with TypeScript!'));  
 
