@@ -1,44 +1,52 @@
-import { type } from "os";
 import { DataTypes, Model, Optional } from "sequelize";
-import connection from "../../config/dbConnection";
+
+import seqlzConnexion from "../../config/dbConnect";
 
 interface RoleAttribute {
-  id?:number | null;
+  id: number;
   roleName?: string | null;
-  active?:boolean | null;
-  createdAt?:Date;
-  updatedAt?:Date;
+  active?: boolean | null;
+  createdAt: Date;
+  updatedAt: Date;
 }
+export interface RoleInput extends Optional<RoleAttribute, "id"> {}
+export interface RoleOutput extends Required<RoleAttribute> {}
 
-export interface RoleInput extends Optional<RoleAttribute,'id'>{}
-export  interface RoleOutpout extends Required<RoleAttribute>{}
-
-class Role extends Model <RoleInput,RoleOutpout> implements RoleAttribute {
-  public id? : number;
-  public roleName?: string | null | undefined;
-  public active?: boolean | null;
-  public createdAt?: Date;
-  public updatedAt?: Date;
+class Role extends Model<RoleAttribute, RoleInput> implements RoleAttribute {
+  public id!: number;
+  public roleName!: string | null | undefined;
+  public active?: boolean | null | undefined;
+  public readonly createdAt!: Date;
+  public readonly updatedAt!: Date;
 }
- Role.init({
-  id:{
-    allowNull:false,
-    autoIncrement:true,    
-    primaryKey:true,
-    type:DataTypes.BIGINT
+Role.init(
+  {
+    id: {
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: DataTypes.BIGINT,
+    },
+    roleName: {
+      allowNull: true,
+      type: DataTypes.STRING,
+    },
+    active: {
+      allowNull: true,
+      type: DataTypes.BOOLEAN,
+    },
+    createdAt: {
+      type: DataTypes.DATE,
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+    },
   },
-  roleName:{
-    allowNull:true,
-    type:DataTypes.STRING
-  },
-  active:{
-    type:DataTypes.BOOLEAN,
-    allowNull:true
+  {
+    timestamps: true,
+    sequelize: seqlzConnexion,
+    underscored: false,
   }
- },{
-  timestamps:true,
-  sequelize:connection,
-  underscored:false
- })
+);
 
- export default Role;
+export default Role;
