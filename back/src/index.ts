@@ -15,10 +15,6 @@ dotenv.config();
 app.use("/role", routeRole);
 app.use("/user",routeUser);
 const PORT = process.env.APP_PORT;
-seqlzConnexion
-  .sync()
-  .then(() => console.log("connexion successfuly"))
-  .catch(() => console.log("Error happen with connexion "));
 app.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`);
 });
