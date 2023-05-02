@@ -1,10 +1,10 @@
 import { Sequelize } from "sequelize-typescript";
-import dotenv from 'dotenv';
+const dotenv =  require('dotenv');
 dotenv.config();
-const dbName: string | undefined  = String(process.env.DB_NAME);
+const dbName  = process.env.DB_NAME  as string;
 const dbHost  =  process.env.DB_HOST;
-const dbUsername : string | undefined =  String(process.env.DB_USERNAME);
+const dbUsername  = process.env.DB_USERNAME as string;
 const dbPassword =  process.env.DB_PASSWORD;
 const dialect = "mysql";
-const seqlzConnexion =  new Sequelize(dbName,dbUsername,dbPassword,{host:dbHost, dialect:dialect});
+const  seqlzConnexion =  new Sequelize(dbName,dbUsername,dbPassword,{host:dbHost, dialect:dialect});
 export default  seqlzConnexion;
