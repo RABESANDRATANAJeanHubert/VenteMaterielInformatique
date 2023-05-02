@@ -1,53 +1,37 @@
-import { json, STRING } from "sequelize";
-import { isUndefined } from "lodash";
-import User from "../db/models/User";
+import { json } from 'sequelize';
+import helper from "../Helper/helper";
+import User from '../db/models/User';
+import { isUndefined } from 'lodash';
+import { error } from 'console';
+import PasswordHelper from '../Helper/PasswordHelper';
+
+
 /**
- * Reqs signup
+ * Reqs register
  * @param req 
  * @param res 
  * @returns  
  */
-export const signup = async (req: any, res: any):Promise<Response> => {
-  const {
-    firstName,
-    lastName,
-    email,
-    roleId,
-    password,
-    accessToken,
-    verified,
-    active,
-  } = req.body;
-  if (
-    isUndefined(firstName) ||
-    isUndefined(lastName) ||
-    isUndefined(email) ||
-    isUndefined(password) 
-  ) {
-    return res.status(400).json({ message: "Information incorrect" });
-  }
+export const  register =  async(req:any, res:any) => {
   try {
-    const createUser = await User.create({
+    const {firstName, lastName, email, password} = req.body;
+    if(isUndefined(firstName) || isUndefined(lastName) || isUndefined(email) || isUndefined(password)){
+      return res.status(400).json(helper.ResponseData(400,"", error, null));
+    }
+   const pwdcrpt = await PasswordHelper.hashPassword(password); 
+    const user  =  await User.create({
       firstName,
       lastName,
       email,
-      roleId:1 as unknown as BigInt,
-      password,
-      accessToken:"TOKEN" as unknown as Text,
-      verified:true,
+      password: pwdcrpt,
       active:true,
+      verified:true,
+      roleId: 1 
     });
-    if (!createUser) {
-      return res.status(410).json({ message: "Verifier les données ajoutées" });
-    }
-    return res
-      .status(200)
-      .json({ message: "Create", data: createUser, success: true });
-  } catch (error) {
-    console.log(error);
-    return res
-      .status(400)
-      .json({ error, message: "Urreur s'est produit dans le serveur" });
+    console.log(user);
+    return res.status(200).send(helper.ResponseData(200,"Created",null,user))
+    } catch (error:any) {
+    return res.status(500).send(helper.ResponseData(500,"",error,null))
   }
-};
+}
 

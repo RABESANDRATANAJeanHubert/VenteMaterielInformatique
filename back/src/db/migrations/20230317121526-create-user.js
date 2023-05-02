@@ -22,11 +22,9 @@ module.exports = {
         type: Sequelize.BIGINT
       },
       password: {
-        type: Sequelize.TEXT
+        type: Sequelize.STRING
       },
-      accessToken: {
-        type: Sequelize.TEXT
-      },
+
       verified: {
         type: Sequelize.BOOLEAN
       },
