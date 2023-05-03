@@ -4,7 +4,7 @@ import User from '../db/models/User';
 import { isUndefined } from 'lodash';
 import { error } from 'console';
 import PasswordHelper from '../Helper/PasswordHelper';
-
+const bcrypt =  require('bcrypt');
 
 /**
  * Reqs register
@@ -28,10 +28,30 @@ export const  register =  async(req:any, res:any) => {
       verified:true,
       roleId: 1 
     });
-    console.log(user);
     return res.status(200).send(helper.ResponseData(200,"Created",null,user))
     } catch (error:any) {
     return res.status(500).send(helper.ResponseData(500,"",error,null))
+  }
+}
+
+export const userLogin =  async(req:any, res:any)=>{
+  const {email, password} =  req.body;
+  try {
+    const user = await  User.findOne({
+      where:{
+        email:email
+      }
+    })
+    if(!user){
+      return res.status(400).send(400,"Unhauthorized",null,null);
+    }
+    const comparePassword = await bcrypt.compare(password,user.password)
+    if(!comparePassword){
+      return res.status(400).send(400,"Password incorrect", error,null);
+    }
+    return res.status(200).send(helper.ResponseData(200,"Ok",null,user));
+  } catch (error) {
+    return res.status(400).send(helper.ResponseData(400,"Server Error",error,null))
   }
 }
 

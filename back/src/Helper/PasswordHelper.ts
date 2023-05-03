@@ -7,9 +7,9 @@ const hashPassword =  async(password:string):Promise<string>=> {
     return cryptPass;
 }
 
-async function checkPassword(password:string, hashpassword:string) {
+const checkPassword = async(password:string, hashpassword:string):Promise<string> =>{
     //compare password
-    const compare = await bcrypt.compare(password, hashPassword);
+    const compare = await bcrypt.compare(password,hashPassword);
    return compare;
 }
 export default {hashPassword,checkPassword}
