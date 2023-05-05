@@ -11,10 +11,10 @@ const registerValidation = async (req: any, res: any, next: any) => {
     password,
   };
   let rules = {
-    firstName: 'required | max:50',
-    lastName: 'required | max:50',
-    email: 'required|email',
-    password: 'required |min:8',
+    firstName: "required|max:50",
+    lastName: "required|max:50",
+    email: "required|email",
+    password: "required|min:8",
   };
   let validator = new Validator(data, rules);
   if (validator.fails()) {
@@ -35,7 +35,7 @@ const registerValidation = async (req: any, res: any, next: any) => {
   });
   if (user) {
     return res
-      .statu(400)
+      .status(400)
       .send(
         helper.ResponseData(
           400,

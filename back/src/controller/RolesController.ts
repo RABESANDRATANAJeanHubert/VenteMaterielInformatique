@@ -11,9 +11,9 @@ import Role from "../db/models/Role";
 export const getRoles = async (req: any, res: any) => {
   try {
     const role: Array<Role> = await Role.findAll();
-   return res.status(200).json({data:Role, message:'List de roles'});
+   return res.status(200).send({data:role, message:'List de roles,'});
   } catch (error) {
-    return res.status(400).json({ error });
+    return res.status(400).send({ error });
   }
 };
 

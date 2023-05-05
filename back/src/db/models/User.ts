@@ -15,6 +15,7 @@ interface UserAttributes {
   active?: boolean;
   createdAt?:Date;
   updatedAt?:Date;
+
 }
 
 export interface UserInput extends Optional<UserAttributes, "id"> {}
