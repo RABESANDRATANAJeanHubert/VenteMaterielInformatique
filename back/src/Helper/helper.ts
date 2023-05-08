@@ -1,3 +1,5 @@
+const jwt=   require('jsonwebtoken');
+const doEnv =  require('dotenv');
 const ResponseData =  (status:number, message:string | null, error: any | null,data:any|null) =>{
         if(error != null && error instanceof Error){
             const response =  {
@@ -16,5 +18,8 @@ const ResponseData =  (status:number, message:string | null, error: any | null,d
         }
         return res
 }
-
-export default {ResponseData}
+const generateToken = async(data:any): Promise<string> => {
+const token = await jwt.sign(data,process.env.TOKEN as string ,{expiresIn:"10m"});
+return token;
+}
+export default {ResponseData, generateToken}
