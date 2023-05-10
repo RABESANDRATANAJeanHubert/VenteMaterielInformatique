@@ -59,6 +59,7 @@ const dataUser = {
   verified:user.verified
 };
 const token = helper.generateToken(dataUser);
+
 const responseUser = {
   firstName:user.firstName,
   lastName:user.lastName,
@@ -69,7 +70,7 @@ const responseUser = {
   verified:user.verified,
   token:token
 };
-    return res.status(200).send(helper.ResponseData(200,"Ok",null,responseUser));
+    return  res.status(200).send(helper.ResponseData(200,"Ok",null,responseUser));
   } catch (error) {
     return res.status(400).send(helper.ResponseData(400,"Server Error",error,null))
   }
