@@ -1,23 +1,55 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-  class Category extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
-    }
+import { DataTypes, Optional ,Model} from "sequelize";
+import seqlzConnexion from "../../config/dbConnect";
+
+
+
+interface CategoryAttributes {
+  id?:string;
+  label:string | undefined;
+  descriptiont?:string | null;
+  createdAt?:Date
+  updatedAt:Date;
+}
+
+export interface  CategoryInput extends Optional <CategoryAttributes, "id">{};
+export interface CategoryOutpout extends Required<CategoryAttributes>{};
+
+class Category extends Model <CategoryInput, CategoryOutpout> implements CategoryAttributes {
+  public id!: string | undefined;
+  public label!: string | undefined;
+  public descriptiont!: string | undefined;
+  public createdAt!: Date | undefined;
+  public updatedAt!: Date;
+}
+
+Category.init({
+  id:{
+    type:DataTypes.BIGINT,
+    primaryKey:true,
+    autoIncrement:true,
+  },
+  label:{
+    type:DataTypes.STRING,
+    allowNull:false
+  },
+  descriptiont:{
+    type:DataTypes.STRING,
+    allowNull:true
+  },
+  createdAt:{
+    type:DataTypes.STRING,
+    allowNull:true
+  },
+  updatedAt:{
+    type:DataTypes.STRING,
+    allowNull:true
   }
-  Category.init({
-    label: DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'Category',
-  });
-  return Category;
-};
+},
+{
+  sequelize: seqlzConnexion,
+  timestamps: true,
+  underscored: false,
+}
+)
+
+export default Category

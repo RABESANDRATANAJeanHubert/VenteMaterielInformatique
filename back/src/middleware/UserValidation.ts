@@ -53,4 +53,6 @@ const registerValidation = async (req: any, res: any, next: any) => {
   }
 };
 
+
+
 export default registerValidation;

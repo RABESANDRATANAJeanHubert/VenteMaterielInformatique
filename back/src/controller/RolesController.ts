@@ -33,6 +33,7 @@ export const addRoles = async (req: any, res: any) => {
       return res.status(400).json({ message: "Information incorrect" });
     }
     const add = await Role.create({ ...req.body });
+    
     return res
       .status(200)
       .json({ data: add, message: "Information créer avec succè" });
