@@ -1,17 +1,9 @@
 
 import  jwt = require("jsonwebtoken");
 import { conf } from "../config/environnement";
-
+import { UserData } from "../types";
 const env = conf()
- interface UserData {
-    firstName:string;
-    lastName:string;
-    email:String;
-    password:String;
-    roleId:Number;
-    active:Boolean;
-    verified:Boolean,
-}
+
 const ResponseData =  (status:number, message:string | null, error: any | null,data:any|null) =>{
         if(error != null && error instanceof Error){
             const response =  {
@@ -30,9 +22,10 @@ const ResponseData =  (status:number, message:string | null, error: any | null,d
         }
         return res
 }
-const generateToken = async(data:any): Promise<string>=> {
+
+const generateToken = async(data:any) => {
     const secretKey =  `${env.KEY_TOKEN}`
-    const token =  jwt.sign(data,secretKey, { expiresIn: '1h' });
+    const token =  jwt.sign(data , secretKey as string, { expiresIn: '10m' });
     return token
 }
 
