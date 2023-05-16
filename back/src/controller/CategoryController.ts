@@ -63,4 +63,20 @@ export class CategoryController {
        }
     }
 
+    static getCategoryByName = async(req:any, res:any) => {
+        const name = req.paramas.name ;
+        try {
+            if(isUndefined(name) || isEmpty(name)){
+                return res.status(400).send(helper.ResponseData(400,"Information is required", null, null));
+            }
+            const category  =  await Category.findOne(name);
+            if(!category){
+                return res.status(400).send(helper.ResponseData(400,"name is not defined", null, null));
+            }
+            return res.status(200).send(helper.ResponseData(200, "ok" , null, category));
+        } catch (error) {
+            return res.status(500).send(helper.ResponseData(500,"Error from sever", error, null))
+        }
+    }
+
 }
