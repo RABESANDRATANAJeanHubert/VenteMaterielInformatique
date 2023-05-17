@@ -6,7 +6,7 @@ import seqlzConnexion from "../../config/dbConnect";
 interface CategoryAttributes {
   id?:string;
   label:string | undefined;
-  descriptiont?:string | null;
+  description?:string | null;
   createdAt?:Date
   updatedAt:Date;
 }
@@ -17,7 +17,7 @@ export interface CategoryOutpout extends Required<CategoryAttributes>{};
 class Category extends Model <CategoryInput, CategoryOutpout> implements CategoryAttributes {
   public id!: string | undefined;
   public label!: string | undefined;
-  public descriptiont!: string | undefined;
+  public description!: string | undefined;
   public createdAt!: Date | undefined;
   public updatedAt!: Date;
 }
@@ -32,7 +32,7 @@ Category.init({
     type:DataTypes.STRING,
     allowNull:false
   },
-  descriptiont:{
+  description:{
     type:DataTypes.STRING,
     allowNull:true
   },

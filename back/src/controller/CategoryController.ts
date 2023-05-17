@@ -6,15 +6,18 @@ export class CategoryController {
     static add = async(req:any, res:any)=>{
         try {
             const {label,description} =  req.body;
+       
             if(isUndefined(label) || isEmpty(label)){
                 return res.status(400).send(helper.ResponseData(400, "Client is not defined", null, null));
             }
             const category  =  new Category()
+            console.log(category);
             category.set('label', label);
-            category.set('descriptiont',description);
+            category.set('description',description);
             await category.save();
             return res.status(200).send(helper.ResponseData(200,"Category has been created", null, category))
         } catch (error) {
+            
             return res.status(500).send(helper.ResponseData(500, "Server Erro", error, null))
         }
     }
@@ -38,7 +41,7 @@ export class CategoryController {
                 return res.status(400).send(helper.ResponseData(400, "Identifiant not found", null, null));
             }
            categoryId.set('label',label);
-           categoryId.set('descriptiont',description);
+           categoryId.set('description',description);
             await categoryId.save();
             return res.status(200).send(helper.ResponseData(200,"Information has been updates",null, categoryId));
         } catch (error) {

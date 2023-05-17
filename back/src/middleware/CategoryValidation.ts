@@ -7,12 +7,12 @@ import Category from "../db/models/Category";
 export const categoryValidation =  async(req:any, res:any)=> {
     const {label, description} =  req.body;
     const dataCategory =  {
-        label, description
+        label,
+        description
     }
     const rules: Validator.Rules = {
-        label: "required|string|max:50",
-        description:'required|max:250',
-  
+        label: 'required|max:50',
+        description:'max:250'
       };
       const validator = new Validator(dataCategory,rules);
       if(validator.fails()){
@@ -26,3 +26,4 @@ export const categoryValidation =  async(req:any, res:any)=> {
         return res.status(400).send(helper.ResponseData(400, "Bad request, name has been added, please find another name", null, null));
       }
 }
+
