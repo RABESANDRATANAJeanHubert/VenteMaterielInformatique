@@ -3,6 +3,7 @@ import helper from "../Helper/helper";
 import Category from "../db/models/Category";
 
 
+
 export const categoryValidation =  async(req:any, res:any)=> {
     const {label, description} =  req.body;
     const dataCategory =  {
@@ -10,7 +11,8 @@ export const categoryValidation =  async(req:any, res:any)=> {
     }
     const rules: Validator.Rules = {
         label: "required|string|max:50",
-        description:'required|max:250'
+        description:'required|max:250',
+  
       };
       const validator = new Validator(dataCategory,rules);
       if(validator.fails()){

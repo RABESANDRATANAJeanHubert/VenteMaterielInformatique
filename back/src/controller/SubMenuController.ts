@@ -23,7 +23,7 @@ export class SubMenuController {
         }
     }
     static updateSubMenu  =  async()=>{
-
+        
     }
     static deleteSubMeny =  async(req:any, res:any)=>{
 
