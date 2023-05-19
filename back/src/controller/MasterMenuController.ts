@@ -14,10 +14,11 @@ export class MasteMenuController {
     ) {
       return res
         .status(400)
-        .send(helper.ResponseData(400, "Infaormation invalid", null, null));
+        .send(helper.ResponseData(400, "Information invalid", null, null));
     }
     try {
       const masterMenu = new MasterMenu();
+      console.log(masterMenu);
       masterMenu.set("name", name);
       masterMenu.set("icon", icon);
       masterMenu.set("ordering", ordering);

@@ -36,6 +36,7 @@ SubMenu.init(
       type: DataTypes.INTEGER,
       autoIncrement: true,
       allowNull: false,
+      primaryKey:true
     },
     isTargetSelf: {
       type: DataTypes.BOOLEAN,

@@ -29,7 +29,8 @@ MasterMenu.init({
     id:{
         type:DataTypes.INTEGER,
         autoIncrement:true,
-        allowNull:false
+        allowNull:false,
+        primaryKey:true
     },
     name:{
         type:DataTypes.STRING,
