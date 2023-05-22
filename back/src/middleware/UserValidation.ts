@@ -12,10 +12,10 @@ const registerValidation = async (req: any, res: any, next: any) => {
       password,
     };
     const rules: Validator.Rules = {
-      firstName: "required|string|max:50",
-      lastName: "required|max:50",
-      email: "required|email",
-      password: "required|min:8",
+      firstName: 'required|string|max:50',
+      lastName: 'required|max:50',
+      email: 'required|email',
+      password: 'required|min:8',
     };
     let validator = new Validator(data, rules);
     if (validator.fails()) {

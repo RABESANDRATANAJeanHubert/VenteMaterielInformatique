@@ -29,6 +29,7 @@ export class ClientController {
         .status(200)
         .send(helper.ResponseData(200, "Client has been  add ", null, client));
     } catch (error) {
+      console.log(error);
       return res
         .status(500)
         .send(

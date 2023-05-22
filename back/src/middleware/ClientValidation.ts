@@ -13,10 +13,10 @@ export const clientValidation = async (req: any, res: any, next: any) => {
         address
       };
       const rules: Validator.Rules = {
-        name: "required|string|max:50",
-        lastName: "required|max:50",
-        email: "required|email",
-        phone: "required|max:10",
+        name: 'required|string|max:50',
+        lastName: 'required|max:50',
+        email: 'required|email',
+        phone: 'required|max:10',
         address:'required|max:250'
       };
       let validator = new Validator(data, rules);
@@ -48,23 +48,6 @@ export const clientValidation = async (req: any, res: any, next: any) => {
           )
         );
       }
-      const clientName = await Client.findOne({
-        where: { name:data.name},
-      });
-
-      if(clientName){
-        return res
-        .status(400)
-        .send(
-          helper.ResponseData(
-            400,
-            "Bad request, check your field",
-            "name is  used, find another ",
-            null
-          )
-        );
-      }
-
       next();
     } catch (error) {
   
