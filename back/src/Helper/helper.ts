@@ -1,16 +1,9 @@
 
 import  jwt = require("jsonwebtoken");
-const  dotenv  =  require('dotenv');
-dotenv.config();
- interface UserData {
-    firstName:string;
-    lastName:string;
-    email:String;
-    password:String;
-    roleId:Number;
-    active:Boolean;
-    verified:Boolean,
-}
+import { conf } from "../config/environnement";
+import { UserData } from "../types";
+const env = conf()
+
 const ResponseData =  (status:number, message:string | null, error: any | null,data:any|null) =>{
         if(error != null && error instanceof Error){
             const response =  {
@@ -36,7 +29,7 @@ const generateToken =  (data:any): string=> {
 }
 
 const refrechToken = async(data:any):Promise<string> =>{
-    const secretKey = `${process.env.REFRECH_TOKEN}`
+    const secretKey = `${env.REFRECH_TOKEN}`
     const refToke =  jwt.sign(data,secretKey,{expiresIn:'1d'});
     return refToke;
 }
@@ -44,7 +37,7 @@ const refrechToken = async(data:any):Promise<string> =>{
 const extractToken = async(token:string):Promise<UserData | null>=>{
 
 try {
-    const secretKey = `${process.env.KEY_TOKEN}`;
+    const secretKey = `${env.KEY_TOKEN}`;
     let resData: null = null;
     const res = jwt.verify(token, secretKey, (error: any, decoded: any) => {
         if (error) {

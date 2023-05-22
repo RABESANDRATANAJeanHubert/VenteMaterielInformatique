@@ -4,6 +4,7 @@
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
+
 app.use(
   bodyParser.urlencoded({
     extended: true,
@@ -11,13 +12,18 @@ app.use(
 );
 app.use(bodyParser.json());
 const dotenv =  require('dotenv');
-
+dotenv.configs
+import { conf } from "./config/environnement";
+import clientRoute from "./routes/Client";
+import routeProvider from "./routes/Provider";
 import routeRole from "./routes/Roles";
 import routeUser from "./routes/User";
-dotenv.config();
+const env = conf()
 app.use("/role", routeRole);
 app.use("/user",routeUser);
-const PORT = process.env.APP_PORT || 3000;
+app.use("/client",clientRoute);
+app.use("/provider",routeProvider);
+const PORT = env.APP_PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`${process.env.APP_NAME} is running on port :${PORT}`);
+  console.log(`${env.APP_NAME} is running on port :${PORT}`);
 });

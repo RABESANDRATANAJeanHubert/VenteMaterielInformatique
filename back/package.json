@@ -16,6 +16,8 @@
     "@types/cookie": "^0.5.1",
     "@types/validatorjs": "^3.15.0",
     "bcrypt": "^5.1.0",
+    "class-validator": "^0.14.0",
+    "cookie-parse": "^0.4.0",
     "cookie-parser": "^1.4.6",
     "cookies": "^0.8.0",
     "dotenv": "^16.0.3",

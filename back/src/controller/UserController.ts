@@ -19,15 +19,15 @@ export const  register =  async(req:any, res:any) => {
       return res.status(400).json(helper.ResponseData(400,"", error, null));
     }
    const pwdcrpt = await PasswordHelper.hashPassword(password); 
-    const user  =  await User.create({
-      firstName,
-      lastName,
-      email,
-      password: pwdcrpt,
-      active:true,
-      verified:true,
-      roleId: 1 
-    });
+    const user=  new User();
+    user.set('firstName',firstName);
+    user.set('lastName', lastName);
+    user.set('email', email);
+    user.set('password', password);
+    user.set('active', true);
+    user.set('verified', true);
+    user.set('roleId', 1);
+    await user.save();
     return res.status(200).send(helper.ResponseData(200,"Created",null,user))
     } catch (error:any) {
     return res.status(500).send(helper.ResponseData(500,"",error,null))
@@ -43,11 +43,11 @@ export const userLogin =  async(req:any, res:any)=>{
       }
     })
     if(!user){
-      return res.status(400).send(400,"Unhauthorized",null,null);
+      return res.status(400).send(helper.ResponseData(400,"Email is incorrect",null,null));
     }
     const comparePassword = await bcrypt.compare(password,user.password)
     if(!comparePassword){
-      return res.status(400).send(400,"Password incorrect", error,null);
+      return res.status(400).send(helper.ResponseData(400,"Password incorrect", error,null));
     }
 const dataUser = {
   firstName:user.firstName,

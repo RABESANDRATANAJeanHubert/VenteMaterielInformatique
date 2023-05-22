@@ -2,6 +2,7 @@ import { json } from "sequelize";
 import { identity, isUndefined } from "lodash";
 import { Response, Request } from "express";
 import Role from "../db/models/Role";
+import helper from "../Helper/helper";
 /**
  * Reqs get roles
  * @param req 
@@ -32,14 +33,14 @@ export const addRoles = async (req: any, res: any) => {
     if (isUndefined(roleName) || isUndefined(active)) {
       return res.status(400).json({ message: "Information incorrect" });
     }
-    const add = await Role.create({ ...req.body });
-    return res
-      .status(200)
-      .json({ data: add, message: "Information créer avec succè" });
+    const role = new Role()
+    role.set('roleName', roleName);
+    role.set('active',active);
+    await role.save()
+    return res.status(200).send(helper.ResponseData(200,"Information créer avec succè", null,role))
   } catch (error) {
     return res
-      .status(400)
-      .json({ success: false, message: "Erreur dans le serveur" });
+      .status(500).send(helper.ResponseData(500,"Error from server", error, null));
   }
 };
 
@@ -56,8 +57,8 @@ export const updateRole = async (req: any, res: any): Promise<Response> => {
     if (!role) {
       return res.status(400).json({ message: "Identifiant incorrect" });
     }
-    role.roleName = roleName;
-    role.active = active;
+    role.set('roleName',roleName);
+    role.set('active',active);
     await role.save();
     return res.status(200).json({ message: "Mise a jour avec succè" , data:role , success:true});
   } catch (error) {
