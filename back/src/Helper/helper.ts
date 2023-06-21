@@ -22,11 +22,10 @@ const ResponseData =  (status:number, message:string | null, error: any | null,d
         }
         return res
 }
-
-const generateToken = async(data:any) => {
-    const secretKey =  `${env.KEY_TOKEN}`
-    const token =  jwt.sign(data , secretKey as string, { expiresIn: '10m' });
-    return token
+const generateToken =  (data:any): string=> {
+    const secretKey =  `${process.env.KEY_TOKEN}`
+    const token =   jwt.sign(data as string, secretKey , { expiresIn: '10m' });
+    return token;
 }
 
 const refrechToken = async(data:any):Promise<string> =>{
@@ -48,7 +47,6 @@ try {
             return decoded;
         }
     })
-    
 if(resData){
     const result:UserData =   <UserData>(resData);
     return result;

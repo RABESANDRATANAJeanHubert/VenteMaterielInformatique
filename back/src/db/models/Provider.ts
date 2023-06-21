@@ -5,8 +5,6 @@ interface ProviderAttributes {
   id?: number;
   name: string | undefined;
   location: string | undefined;
-  createdAt: Date;
-  updatedAt: Date;
 }
 
 export interface ProviderInput extends Optional<ProviderAttributes, "id"> {}
@@ -19,8 +17,6 @@ export interface ProviderOutpout extends Required<ProviderAttributes> {}
   public id!: number | undefined;
   name: string | undefined;
   location: string | undefined;
-  createdAt!: Date;
-  updatedAt!: Date;
 }
 
 Provider.init(
@@ -38,14 +34,7 @@ Provider.init(
     location: {
       type: DataTypes.STRING,
       allowNull: true,
-    },
-    createdAt: {
-      type: DataTypes.DATE,
-      allowNull: true,
-    },
-    updatedAt: {
-      type: DataTypes.DATE,
-    },
+    }
   },
   {
     timestamps: true,
