@@ -5,7 +5,7 @@ import { categoryValidation } from "../middleware/CategoryValidation";
 const express = require('express');
 const routeCategory = express.Router();
 // use router
-routeCategory.post('/add',categoryValidation,CategoryController.add);
+routeCategory.post('/add',CategoryController.add);
 routeCategory.get('/',CategoryController.categoryList);
 routeCategory.put('/:id',CategoryController.update);
 routeCategory.delete('/:id',CategoryController.delete);

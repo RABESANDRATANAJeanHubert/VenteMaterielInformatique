@@ -7,8 +7,7 @@ interface CategoryAttributes {
   id?:string;
   label:string | undefined;
   description?:string | null;
-  createdAt?:Date
-  updatedAt:Date;
+
 }
 
 export interface  CategoryInput extends Optional <CategoryAttributes, "id">{};
@@ -18,8 +17,7 @@ class Category extends Model <CategoryInput, CategoryOutpout> implements Categor
   public id!: string | undefined;
   public label!: string | undefined;
   public description!: string | undefined;
-  public createdAt!: Date | undefined;
-  public updatedAt!: Date;
+
 }
 
 Category.init({
@@ -35,15 +33,8 @@ Category.init({
   description:{
     type:DataTypes.STRING,
     allowNull:true
-  },
-  createdAt:{
-    type:DataTypes.STRING,
-    allowNull:true
-  },
-  updatedAt:{
-    type:DataTypes.STRING,
-    allowNull:true
   }
+
 },
 {
   sequelize: seqlzConnexion,
