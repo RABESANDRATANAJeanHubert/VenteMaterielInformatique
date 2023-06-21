@@ -1,9 +1,13 @@
-
-
-
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
+const cors = require("cors");
+const corsOptions ={
+  origin:'*', 
+  credentials:true,            //access-control-allow-credentials:true
+  optionSuccessStatus:200,
+}
+app.use(cors(corsOptions));
 
 app.use(
   bodyParser.urlencoded({
@@ -27,7 +31,7 @@ app.use("/client",clientRoute);
 app.use("/provider",routeProvider);
 app.use("/category",routeCategory);
 app.use("/menu-master",routerMenuMaster);
-const PORT = env.APP_PORT || 3000;
+const PORT = env.APP_PORT || 4000;
 app.listen(PORT, () => {
   console.log(`${env.APP_NAME} is running on port :${PORT}`);
 });

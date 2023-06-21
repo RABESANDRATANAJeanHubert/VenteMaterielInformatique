@@ -7,7 +7,7 @@ export class CategoryController {
         try {
             const {label,description} =  req.body;
        
-            if(isUndefined(label) || isEmpty(label)){
+            if(isUndefined(label) || isEmpty(label)){   
                 return res.status(400).send(helper.ResponseData(400, "Client is not defined", null, null));
             }
             const category  =  new Category()
@@ -17,7 +17,6 @@ export class CategoryController {
             await category.save();
             return res.status(200).send(helper.ResponseData(200,"Category has been created", null, category))
         } catch (error) {
-            
             return res.status(500).send(helper.ResponseData(500, "Server Erro", error, null))
         }
     }
@@ -34,16 +33,19 @@ export class CategoryController {
     }
 
     static update = async(req:any, res:any) =>{
-        const {label, id,description} =  req.body;
+        const id = req.body.id || req.params.id || req.query.id;
+        const label =  req.body.label || req.params.label || req.query.label;
+        const description=  req.body.description || req.params.description || req.query.description;
         try {
-            const categoryId =  await Category.findByPk(id);
-            if(!categoryId){
-                return res.status(400).send(helper.ResponseData(400, "Identifiant not found", null, null));
+            const category =  await Category.findByPk(id);
+            console.log(category);
+            if(!category){
+                return res.status(400).send(helper.ResponseData(400, "Identifiant introuvable", null, null));
             }
-           categoryId.set('label',label);
-           categoryId.set('description',description);
-            await categoryId.save();
-            return res.status(200).send(helper.ResponseData(200,"Information has been updates",null, categoryId));
+           category.set('label',label);
+           category.set('description',description);
+            await category.save();
+            return res.status(200).send(helper.ResponseData(200,"Information has been updates",null, category));
         } catch (error) {
             return res.status(500).send(helper.ResponseData(500, "Error from server, please wait for a moment", error, null));
         }

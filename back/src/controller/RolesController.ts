@@ -11,10 +11,14 @@ import helper from "../Helper/helper";
  */
 export const getRoles = async (req: any, res: any) => {
   try {
-    const role: Array<Role> = await Role.findAll();
-   return res.status(200).send({data:role, message:'List de roles,'});
+    const role= await Role.findAll();
+    
+    if(!role){
+      return res.status(400).send(helper.ResponseData(400,"Information not found",null,null));
+    }
+   return res.status(200).send(helper.ResponseData(200,"Role list",null,role));
   } catch (error) {
-    return res.status(400).send({ error });
+    return res.status(500).send(helper.ResponseData(500,"Error from server",error, null));
   }
 };
 
@@ -36,7 +40,7 @@ export const addRoles = async (req: any, res: any) => {
     const role = new Role()
     role.set('roleName', roleName);
     role.set('active',active);
-    await role.save()
+    await role.save();
     return res.status(200).send(helper.ResponseData(200,"Information créer avec succè", null,role))
   } catch (error) {
     return res
@@ -96,3 +100,4 @@ export const deleteRole = async (req: any, res: any) => {
       .json({ message: "Une erreur s'est produit dans le serveur" });
   }
 };
+

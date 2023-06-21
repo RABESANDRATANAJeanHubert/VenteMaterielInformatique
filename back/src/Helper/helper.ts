@@ -47,7 +47,6 @@ try {
             return decoded;
         }
     })
-    
 if(resData){
     const result:UserData =   <UserData>(resData);
     return result;

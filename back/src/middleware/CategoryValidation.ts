@@ -19,9 +19,7 @@ export const categoryValidation =  async(req:any, res:any)=> {
         return res.status(400).send(helper.ResponseData(400, "Bad request, check your filds", validator.errors, null));
       }
 
-      const checkCategoryName = await Category.findOne({
-        where:{label:dataCategory.label}
-      });
+      const checkCategoryName = await Category.findByPk(label)
       if(checkCategoryName){
         return res.status(400).send(helper.ResponseData(400, "Bad request, name has been added, please find another name", null, null));
       }
