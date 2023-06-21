@@ -24,8 +24,6 @@ export class SubMenuController {
         }
     }
     static updateSubMenu  =  async(req:any, res:any)=>{
-        
- 
         try {
             const {id,name, title, ordering, active,masterMenuId,isTargetSelf} =  req.body;
             const menu= await SubMenu.findByPk(id);

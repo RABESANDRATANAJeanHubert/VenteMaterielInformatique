@@ -1,16 +1,11 @@
 import { DataTypes, Model, Optional } from "sequelize";
 import seqlzConnexion from "../../config/dbConnect";
-
-interface ProviderAttributes {
-  id?: number;
-  name: string | undefined;
-  location: string | undefined;
-}
+import { ProviderAttributes } from "../../types";
 
 export interface ProviderInput extends Optional<ProviderAttributes, "id"> {}
 export interface ProviderOutpout extends Required<ProviderAttributes> {}
 
- export class Provider
+export class Provider
   extends Model<ProviderInput, ProviderOutpout>
   implements ProviderAttributes
 {
@@ -25,7 +20,7 @@ Provider.init(
       primaryKey: true,
       type: DataTypes.BIGINT,
       allowNull: false,
-      autoIncrement:true
+      autoIncrement: true,
     },
     name: {
       type: DataTypes.STRING,
@@ -34,7 +29,7 @@ Provider.init(
     location: {
       type: DataTypes.STRING,
       allowNull: true,
-    }
+    },
   },
   {
     timestamps: true,
@@ -42,4 +37,3 @@ Provider.init(
     underscored: false,
   }
 );
-

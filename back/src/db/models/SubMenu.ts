@@ -1,18 +1,6 @@
 import { Optional, Model, DataTypes } from "sequelize";
 import seqlzConnexion from "../../config/dbConnect";
-
-interface SubMenuAttributes {
-  id: number | undefined;
-  name: string | undefined;
-  icon: string | undefined;
-  ordering: number | undefined;
-  active: boolean | undefined;
-  title: string | undefined;
-  isTargetSelf: boolean | undefined;
-  masterMenuId: number | undefined;
-  createdAt: Date;
-  updatedAt: Date;
-}
+import { SubMenuAttributes } from "../../types";
 
 export interface SubMenuAInput extends Optional<SubMenuAttributes, "id"> {}
 export interface SubMenuOutput extends Required<SubMenuAttributes> {}
@@ -36,7 +24,7 @@ SubMenu.init(
       type: DataTypes.INTEGER,
       autoIncrement: true,
       allowNull: false,
-      primaryKey:true
+      primaryKey: true,
     },
     isTargetSelf: {
       type: DataTypes.BOOLEAN,

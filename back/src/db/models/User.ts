@@ -1,36 +1,19 @@
-
-
 import { DataTypes, Model, Optional } from "sequelize";
 import seqlzConnexion from "../../config/dbConnect";
-
-
-interface UserAttributes {
-  id?: number;
-  firstName?: String | null;
-  lastName?: String | null;
-  email?: String | null;
-  roleId?: Number | null;
-  password?: String;
-  verified?: Boolean;
-  active?: boolean;
-  createdAt?:Date;
-  updatedAt?:Date;
-
-}
-
+import { UserAttributes } from "../../types";
 export interface UserInput extends Optional<UserAttributes, "id"> {}
 export interface UserOutput extends Required<UserAttributes> {}
 
 class User extends Model<UserInput, UserAttributes> implements UserInput {
   public id!: number;
-  public firstName!: String ;
-  public lastName!: String ;
-  public email!: String ;
-  public roleId!: Number ;
+  public firstName!: String;
+  public lastName!: String;
+  public email!: String;
+  public roleId!: Number;
   public password!: String;
   public verified!: Boolean;
   public active!: boolean;
-  public readonly createdAt!:Date;
+  public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
 }
 
@@ -40,7 +23,7 @@ User.init(
       allowNull: false,
       autoIncrement: true,
       type: DataTypes.BIGINT,
-      primaryKey:true
+      primaryKey: true,
     },
     firstName: {
       type: DataTypes.STRING,
@@ -53,10 +36,10 @@ User.init(
     email: {
       type: DataTypes.STRING,
       allowNull: true,
-      unique:true,
-      validate:{
-        isEmail:true
-      }
+      unique: true,
+      validate: {
+        isEmail: true,
+      },
     },
     roleId: {
       type: DataTypes.NUMBER,

@@ -24,13 +24,11 @@ export class MasteMenuController {
       masterMenu.set("ordering", ordering);
       masterMenu.set("active", active);
       await masterMenu.save();
-      return res
-        .status(200)
-        .send(
-          helper.ResponseData(200, "Menu has been rgister", null, {
-            data: masterMenu,
-          })
-        );
+      return res.status(200).send(
+        helper.ResponseData(200, "Menu has been rgister", null, {
+          data: masterMenu,
+        })
+      );
     } catch (error) {
       return res
         .status(500)
@@ -52,13 +50,11 @@ export class MasteMenuController {
       checksubmenu.set("ordering", ordering);
       checksubmenu.set("active", active);
       await checksubmenu.save();
-      return res
-        .status(200)
-        .send(
-          helper.ResponseData(200, "Information has been update", null, {
-            dat: checksubmenu,
-          })
-        );
+      return res.status(200).send(
+        helper.ResponseData(200, "Information has been update", null, {
+          dat: checksubmenu,
+        })
+      );
     } catch (error) {
       return res
         .status(500)

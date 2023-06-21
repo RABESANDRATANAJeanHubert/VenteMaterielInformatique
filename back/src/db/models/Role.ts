@@ -1,14 +1,8 @@
 import { DataTypes, Model, Optional } from "sequelize";
 
 import seqlzConnexion from "../../config/dbConnect";
+import { RoleAttribute } from "../../types";
 
-interface RoleAttribute {
-  id: number;
-  roleName?: string | null;
-  active?: boolean | null;
-  createdAt: Date;
-  updatedAt: Date;
-}
 export interface RoleInput extends Optional<RoleAttribute, "id"> {}
 export interface RoleOutput extends Required<RoleAttribute> {}
 
