@@ -1,38 +1,85 @@
 {
-  "name": "quasar-project",
-  "version": "0.0.1",
-  "description": "dev perso",
-  "productName": "quasar",
-  "author": "Jean Hubert <jeanhubert.rabesandratana@cpp-system.com>",
-  "private": true,
+  "name": "materio-mui-react-nextjs-admin-template-free",
+  "description": "Most Powerful & Comprehensive Free MUI React NextJS Admin Dashboard Template built for developers! 🚀",
+  "license": "MIT",
+  "version": "1.0.0",
+  "author": {
+    "name": "ThemeSelection",
+    "url": "https://themeselection.com/"
+  },
+  "bugs": {
+    "url": "https://github.com/themeselection/materio-mui-react-nextjs-admin-template-free/issues"
+  },
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/themeselection/materio-mui-react-nextjs-admin-template-free.git"
+  },
+  "homepage": "https://themeselection.com/products/materio-free-mui-react-nextjs-admin-template/",
+  "keywords": [
+    "react",
+    "javascript",
+    "admin",
+    "typescript",
+    "dashboard",
+    "material-design",
+    "nextjs",
+    "material-ui",
+    "admin-dashboard",
+    "free",
+    "mui",
+    "admin-template",
+    "admin-panel",
+    "freebies",
+    "nextjs-template",
+    "react-dashboard",
+    "themeselection"
+  ],
   "scripts": {
-    "lint": "eslint --ext .js,.ts,.vue ./",
-    "format": "prettier --write \"**/*.{js,ts,vue,scss,html,md,json}\" --ignore-path .gitignore",
-    "test": "echo \"No test specified\" && exit 0",
-    "dev": "quasar dev",
-    "build": "quasar build"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "export": "next export",
+    "lint": "eslint --fix \"src/**/*.{js,jsx,ts,tsx}\"",
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\""
   },
   "dependencies": {
-    "@quasar/extras": "^1.0.0",
-    "quasar": "^2.6.0",
-    "vue": "^3.0.0",
-    "vue-router": "^4.0.0"
+    "@emotion/cache": "^11.6.0",
+    "@emotion/react": "^11.7.0",
+    "@emotion/server": "^11.4.0",
+    "@emotion/styled": "^11.6.0",
+    "@mui/lab": "^5.0.0-alpha.70",
+    "@mui/material": "^5.4.3",
+    "@popperjs/core": "^2.11.2",
+    "apexcharts-clevision": "3.28.5",
+    "axios": "^1.4.0",
+    "axios-hooks": "^4.0.0",
+    "clsx": "^1.1.1",
+    "mdi-material-ui": "^7.1.0",
+    "next": "12.0.4",
+    "nprogress": "^0.2.0",
+    "react": "17.0.2",
+    "react-apexcharts": "^1.3.9",
+    "react-datepicker": "^4.5.0",
+    "react-dom": "17.0.2",
+    "react-perfect-scrollbar": "^1.5.8",
+    "react-popper": "^2.2.5"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.10.0",
-    "@typescript-eslint/parser": "^5.10.0",
-    "eslint": "^8.10.0",
-    "eslint-plugin-vue": "^9.0.0",
-    "eslint-config-prettier": "^8.1.0",
-    "prettier": "^2.5.1",
-    "@types/node": "^12.20.21",
-    "@quasar/app-vite": "^1.0.0",
-    "autoprefixer": "^10.4.2",
-    "typescript": "^4.5.4"
-  },
-  "engines": {
-    "node": "^18 || ^16 || ^14.19",
-    "npm": ">= 6.13.4",
-    "yarn": ">= 1.21.1"
+    "@types/node": "16.11.11",
+    "@types/nprogress": "^0.2.0",
+    "@types/react": "17.0.37",
+    "@types/react-datepicker": "^4.3.2",
+    "@typescript-eslint/eslint-plugin": "^5.6.0",
+    "@typescript-eslint/parser": "^5.11.0",
+    "eslint": "^7.32.0",
+    "eslint-config-next": "12.0.4",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-import-resolver-typescript": "^2.5.0",
+    "eslint-plugin-import": "^2.25.4",
+    "next-transpile-modules": "^9.0.0",
+    "prettier": "2.5.1",
+    "typescript": "4.5.2"
   }
 }
