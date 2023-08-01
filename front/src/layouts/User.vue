@@ -4,10 +4,10 @@
   <q-layout view="hHh Lpr fFf">
     <!-- Be sure to play with the Layout demo on docs -->
     <!-- (Optional) The Header -->
-    <q-header class="bg-white">
+    <q-header class="bg-blue text-white">
       <q-toolbar class="text-black">
         <q-btn flat round dense icon="menu" @click="leftDrawer = !leftDrawer" />
-        <q-toolbar-title> CPP-SYSTEM </q-toolbar-title>
+        <q-toolbar-title>Info Cheat</q-toolbar-title>
       </q-toolbar>
 
       <q-tabs class="text-black">
@@ -16,28 +16,28 @@
           to="profile"
           replace
           label="Acceuil"
-          active-class="text-negative"
+          active-class="text-white"
         />
         <q-route-tab
           icon="assignment"
           to="about"
           replace
           label="Nos équipe"
-          active-class="text-negative"
+          active-class="text-white"
         />
         <q-route-tab
           icon="assignment"
           to="news"
           replace
           label="Actualité"
-          active-class="text-negative"
+          active-class="text-white"
         />
         <q-route-tab
           icon="assignment"
           to="entreprise"
           replace
           label="Pour les entreprise"
-          active-class="text-negative"
+          active-class="text-white"
         />
       </q-tabs>
       <q-separator></q-separator>

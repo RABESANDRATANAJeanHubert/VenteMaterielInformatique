@@ -7,9 +7,8 @@
       <q-card flat>
         <span class="text-h4"
           >Bienvenue dans <br />
-          CPP-SYSTEM</span
+          Info Cheat</span
         >
-
         <q-card-section class="q-pl-md text-h7">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem
@@ -27,7 +26,7 @@
         </q-card-section>
       </q-card>
     </div>
-    <div class="col-md-6 col-lg-12 col-xs-12 q-pr-md">
+    <div class="col-md-6 col-lg-6 col-xs-12 q-pr-md">
       <q-card flat bordered style="border-radius: 1em" class="my-card">
         <q-card-section>
           <div class="text-h6">Our Changing Planet</div>
