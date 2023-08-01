@@ -6,7 +6,7 @@ const express = require('express');
 const routeCategory = express.Router();
 // use router
 routeCategory.post('/add',CategoryController.add);
-routeCategory.get('/',CategoryController.categoryList);
+routeCategory.get('/',CategoryController.list);
 routeCategory.put('/:id',CategoryController.update);
 routeCategory.delete('/:id',CategoryController.delete);
 

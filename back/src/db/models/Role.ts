@@ -1,5 +1,4 @@
 import { DataTypes, Model, Optional } from "sequelize";
-
 import seqlzConnexion from "../../config/dbConnect";
 import { RoleAttribute } from "../../types";
 

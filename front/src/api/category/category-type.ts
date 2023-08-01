@@ -1,6 +1,7 @@
 export type Category = {
   label:string;
   description:string;
+  id:string;
 }
 
 export  type CreateCategoryInput = Omit<Category,'id'>

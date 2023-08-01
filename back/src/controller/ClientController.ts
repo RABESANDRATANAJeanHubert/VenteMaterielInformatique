@@ -6,6 +6,8 @@ import { Client } from "../db/models/Client";
 export class ClientController {
   static create = async (req: any, res: any) => {
     const { name, lastName, email, address, phone } = req.body;
+    console.log(name)
+    
     if (
       isUndefined(email) ||
       isUndefined(phone) ||

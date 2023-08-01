@@ -1,16 +1,11 @@
 const express = require("express");
 const routeRole = express.Router();
 
-import {
-  getRoles,
-  addRoles,
-  updateRole,
-  deleteRole,
-} from "../controller/RolesController";
+import { RoleController } from "../controller/RolesController";
 import { authenticate } from "../middleware/Authentication";
 import { RoleValidation } from "../middleware/RoleValidation";
-routeRole.get("/", getRoles);
-routeRole.post("/add", RoleValidation, addRoles);
-routeRole.put("/update/:id", updateRole);
-routeRole.delete("/delete/:id", deleteRole);
+routeRole.get("/", RoleController.lists);
+routeRole.post("/add", RoleValidation, RoleController.add);
+routeRole.put("/update/:id", RoleController.update);
+routeRole.delete("/delete/:id", RoleController.delete);
 export default routeRole;
