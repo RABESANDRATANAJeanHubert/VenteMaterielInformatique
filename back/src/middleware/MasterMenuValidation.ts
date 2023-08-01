@@ -15,8 +15,8 @@ export const masterValidation = async (req: any, res: any, next: any) => {
     const list: Validator.Rules = {
       name: "required| max:100",
       icon: "max:10",
-      ordering: "min:10",
-      active: "min:10",
+      ordering: "max:10",
+      active: "max:10",
     };
     const validator = new Validator(info, list);
     if (validator.fails()) {

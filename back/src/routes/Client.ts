@@ -4,7 +4,7 @@ import { clientValidation } from "../middleware/ClientValidation";
 const express = require("express");
 const clientRoute = express.Router();
 
-clientRoute.post("/add", clientValidation, ClientController.create);
+clientRoute.post("/add", ClientController.create);
 clientRoute.get("/", ClientController.getAllInformation);
 clientRoute.put("/:id", ClientController.update);
 clientRoute.delete("/:id", ClientController.delete);

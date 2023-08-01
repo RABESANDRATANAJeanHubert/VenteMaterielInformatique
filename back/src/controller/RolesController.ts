@@ -3,13 +3,15 @@ import { identity, isUndefined } from "lodash";
 import { Response, Request } from "express";
 import Role from "../db/models/Role";
 import helper from "../Helper/helper";
+
+export class RoleController{
 /**
  * Reqs get roles
  * @param req 
  * @param res 
  * @returns  
  */
-export const getRoles = async (req: any, res: any) => {
+static lists = async (req: any, res: any) => {
   try {
     const role= await Role.findAll();
     
@@ -29,7 +31,7 @@ export const getRoles = async (req: any, res: any) => {
  * @returns  
  */
 
-export const addRoles = async (req: any, res: any) => {
+static add = async (req: any, res: any) => {
   try {
     const roleName = req.body.roleName || req.query.roleName;
     const active = req.body.active || req.query.active || req.params.active;
@@ -48,7 +50,7 @@ export const addRoles = async (req: any, res: any) => {
   }
 };
 
-export const updateRole = async (req: any, res: any): Promise<Response> => {
+static update = async (req: any, res: any): Promise<Response> => {
   const roleName =
     req.body.roleName || req.query.roleName || req.params.roleName;
   const active = req.body.roleName || req.query.active || req.params.active;
@@ -76,7 +78,7 @@ export const updateRole = async (req: any, res: any): Promise<Response> => {
  * @returns  
  */
 
-export const deleteRole = async (req: any, res: any) => {
+static delete = async (req: any, res: any) => {
   const id = req.body.id || req.query.id || req.params.id;
   try {
     if (isUndefined(id)) {
@@ -100,4 +102,6 @@ export const deleteRole = async (req: any, res: any) => {
       .json({ message: "Une erreur s'est produit dans le serveur" });
   }
 };
+}
+
 

@@ -6,13 +6,14 @@ import { error } from 'console';
 import PasswordHelper from '../Helper/PasswordHelper';
 const bcrypt =  require('bcrypt');
 
+export class UserController {
 /**
  * Reqs register
  * @param req 
  * @param res 
  * @returns  
  */
-export const  register =  async(req:any, res:any) => {
+static  register =  async(req:any, res:any) => {
   try {
     const {firstName, lastName, email, password} = req.body;
     if(isUndefined(firstName) || isUndefined(lastName) || isUndefined(email) || isUndefined(password)){
@@ -34,7 +35,7 @@ export const  register =  async(req:any, res:any) => {
   }
 }
 
-export const userLogin =  async(req:any, res:any)=>{
+static userLogin =  async(req:any, res:any)=>{
   const {email, password} =  req.body;
   try {
     const user = await  User.findOne({
@@ -75,4 +76,6 @@ const responseUser = {
     return res.status(400).send(helper.ResponseData(400,"Server Error",error,null))
   }
 }
+}
+
 

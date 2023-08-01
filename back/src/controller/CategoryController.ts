@@ -6,14 +6,13 @@ export class CategoryController {
   static add = async (req: any, res: any) => {
     try {
       const { label, description } = req.body;
-
       if (isUndefined(label) || isEmpty(label)) {
         return res
           .status(400)
           .send(helper.ResponseData(400, "Client is not defined", null, null));
       }
+      
       const category = new Category();
-      console.log(category);
       category.set("label", label);
       category.set("description", description);
       await category.save();
@@ -28,7 +27,7 @@ export class CategoryController {
         .send(helper.ResponseData(500, "Server Erro", error, null));
     }
   };
-  static categoryList = async (req: any, res: any) => {
+  static list = async (req: any, res: any) => {
     try {
       const category = await Category.findAll();
       if (isEmpty(category)) {
@@ -62,7 +61,6 @@ export class CategoryController {
       req.body.description || req.params.description || req.query.description;
     try {
       const category = await Category.findByPk(id);
-      console.log(category);
       if (!category) {
         return res
           .status(400)

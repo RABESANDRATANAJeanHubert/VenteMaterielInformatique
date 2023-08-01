@@ -1,7 +1,7 @@
 const  express =  require('express');
 const routeUser = express.Router();
-import { register, userLogin } from "../controller/UserController";
+import { UserController } from "../controller/UserController";
 import UserValidation  from "../middleware/UserValidation"
-routeUser.post("/signup", UserValidation,register);
-routeUser.post("/signin",userLogin);
+routeUser.post("/signup", UserValidation,UserController.register);
+routeUser.post("/signin",UserController.userLogin);
 export default routeUser;
