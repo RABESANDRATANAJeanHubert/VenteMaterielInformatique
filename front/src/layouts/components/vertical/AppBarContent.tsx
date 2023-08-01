@@ -79,5 +79,4 @@ const AppBarContent = (props: Props) => {
     </Box>
   )
 }
-
 export default AppBarContent
