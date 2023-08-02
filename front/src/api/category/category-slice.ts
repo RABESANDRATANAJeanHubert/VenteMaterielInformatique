@@ -1,7 +1,6 @@
 import { createCategoryThunk } from './category-create-thunk'
-import { Category, CategoryAddAction, CategoryDeleteAction, CategoryUpdateAction } from './category-type'
+import { Category, CategoryAddAction, CategoryDeleteAction } from './category-type'
 import { createSlice } from '@reduxjs/toolkit'
-import { updateCategoryThunk } from './category-update-thunk'
 import { removeCategoryThunk } from './category-remove-thunk'
 
 export type State = {
@@ -12,7 +11,7 @@ export type State = {
 
 export const initialState: State = {
   data: [],
-  loading: true,
+  loading: false,
   error: ''
 }
 
@@ -20,10 +19,7 @@ function add(state: State, action: CategoryAddAction) {
   if (state.data.findIndex(i => i.id == action.payload.id) >= 0) return
   state.data.unshift(action.payload)
 }
-function update(state: State, action: CategoryUpdateAction) {
-  const index = state.data.findIndex(i => i.id == action.payload.id)
-  if (index > -1) state.data[index] = action.payload
-}
+
 
 function remove(state: State, action: CategoryDeleteAction) {
   const index = state.data.findIndex(i => i.id == action.payload)
@@ -38,30 +34,31 @@ const slice = createSlice({
     builder
 
       // ADD Category
-
-      .addCase(createCategoryThunk.pending, state => {
+      .addCase(createCategoryThunk.pending, (state) => {
         state.loading = true
       })
       .addCase(createCategoryThunk.fulfilled, (state, action) => {
-        ;(state.loading = false), add(state, action), (state.error = '')
+        (state.loading = false), add(state, action), (state.error = '')
       })
       .addCase(createCategoryThunk.rejected, (state, action) => {
-        ;(state.loading = false), (state.error = action.error.message || ''), (state.data = [])
+        (state.loading = false), (state.error = action.error.message || ''), (state.data = [])
       })
 
       //UPDATE CATEGORY
-      .addCase(updateCategoryThunk.pending, state => {
-        state.loading = true
-      })
-      .addCase(updateCategoryThunk.fulfilled, (state, action) => {
-        update(state, action), (state.loading = false), (state.error = '')
-      })
-      .addCase(updateCategoryThunk.rejected, (state, action) => {
-        ;(state.data = []), (state.error = action.error.message || ''), (state.loading = false)
-      })
+
+      // .addCase(updateCategoryThunk.pending, (state) => {
+      //   state.loading = true
+      // })
+      // .addCase(updateCategoryThunk.fulfilled, (state, action) => {
+      //   update(state, action), (state.loading = false), (state.error = '')
+      // })
+      // .addCase(updateCategoryThunk.rejected, (state, action) => {
+      //   ;(state.data = []), (state.error = action.error.message || ''), (state.loading = false)
+      // })
 
       // REMOVE CATEGORY
-      .addCase(removeCategoryThunk.pending, state => {
+
+      .addCase(removeCategoryThunk.pending, (state) => {
         state.loading = true
       })
       .addCase(removeCategoryThunk.fulfilled, (state, action) => {

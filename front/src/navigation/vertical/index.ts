@@ -9,8 +9,7 @@ import CreditCardOutline from 'mdi-material-ui/CreditCardOutline'
 import AccountPlusOutline from 'mdi-material-ui/AccountPlusOutline'
 import AlertCircleOutline from 'mdi-material-ui/AlertCircleOutline'
 import GoogleCirclesExtended from 'mdi-material-ui/GoogleCirclesExtended'
-import mdiShapeOutline from 'mdi-material-ui/mdiShapeOutline'
-
+import Account from 'mdi-material-ui/Account'
 
 // ** Type import
 import { VerticalNavItemsType } from 'src/@core/layouts/types'
@@ -58,7 +57,7 @@ const navigation = (): VerticalNavItemsType => {
     },
     {
       title: 'Category',
-      icon: mdiShapeOutline,
+      icon: Account,
       path: '/typography'
     },
     {

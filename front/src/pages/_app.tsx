@@ -3,6 +3,7 @@ import Head from 'next/head'
 import { Router } from 'next/router'
 import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
+import store from 'src/store'
 
 // ** Loader Import
 import NProgress from 'nprogress'
@@ -29,6 +30,8 @@ import 'react-perfect-scrollbar/dist/css/styles.css'
 
 // ** Global css styles
 import '../../styles/globals.css'
+import { Provider } from 'react-redux'
+import { NoticficationProvider } from 'src/contexts/notification-context'
 
 // ** Extend App Props with Emotion
 type ExtendedAppProps = AppProps & {
@@ -59,6 +62,7 @@ const App = (props: ExtendedAppProps) => {
   const getLayout = Component.getLayout ?? (page => <UserLayout>{page}</UserLayout>)
 
   return (
+    <Provider store = {store}>
     <CacheProvider value={emotionCache}>
       <Head>
         <title>{`${themeConfig.templateName} - Material Design React Admin Template`}</title>
@@ -69,15 +73,18 @@ const App = (props: ExtendedAppProps) => {
         <meta name='keywords' content='Material Design, MUI, Admin Template, React Admin Template' />
         <meta name='viewport' content='initial-scale=1, width=device-width' />
       </Head>
-
       <SettingsProvider>
+      <NoticficationProvider>
         <SettingsConsumer>
           {({ settings }) => {
             return <ThemeComponent settings={settings}>{getLayout(<Component {...pageProps} />)}</ThemeComponent>
           }}
         </SettingsConsumer>
+        </NoticficationProvider>
       </SettingsProvider>
+
     </CacheProvider>
+    </Provider>
   )
 }
 
