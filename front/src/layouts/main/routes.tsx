@@ -10,9 +10,8 @@ import AccountPlusOutline from 'mdi-material-ui/AccountPlusOutline'
 import AlertCircleOutline from 'mdi-material-ui/AlertCircleOutline'
 import GoogleCirclesExtended from 'mdi-material-ui/GoogleCirclesExtended'
 import Account from 'mdi-material-ui/Account'
-
-// ** Type import
 import { VerticalNavItemsType } from 'src/@core/layouts/types'
+
 
 const routes = (): VerticalNavItemsType => {
   return [

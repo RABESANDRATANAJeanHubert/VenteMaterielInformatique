@@ -4,12 +4,12 @@ import PencilIcon from '@heroicons/react/24/solid/PencilIcon'
 import { Button, Card, CardContent, Divider, Stack, Typography } from '@mui/material'
 
 export type CategoryProps = {
-
-  category: Category
+  edit:(data:Category) => void;
+  category: Category;
 }
 
 export const CategoryCard = (props: CategoryProps) => {
-  const {  category } = props
+  const {  edit,category } = props
 
   return (
     <Card
@@ -31,7 +31,7 @@ export const CategoryCard = (props: CategoryProps) => {
       <Divider />
       <Stack alignItems='center' direction='row' justifyContent='space-between' spacing={2} sx={{ p: 2 }}>
         <Stack alignItems='center' direction='row' spacing={1}>
-          <Button color='success'  startIcon={<PencilIcon />}>
+          <Button color='success'  onClick={()=>edit(category)} startIcon={<PencilIcon />}>
             Editer
           </Button>
         </Stack>
