@@ -58,7 +58,7 @@ const navigation = (): VerticalNavItemsType => {
     {
       title: 'Category',
       icon: Account,
-      path: '/typography'
+      path: '/category'
     },
     {
       title: 'Icons',

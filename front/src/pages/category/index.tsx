@@ -1,83 +1,44 @@
 // ** MUI Imports
-import Grid from '@mui/material/Grid'
-import Typography from '@mui/material/Typography'
+import Paper from '@mui/material/Paper'
+import Table from '@mui/material/Table'
+import TableBody from '@mui/material/TableBody'
+import TableCell from '@mui/material/TableCell'
+import TableContainer from '@mui/material/TableContainer'
+import { RootState, appDispatch } from 'src/store'
+import { useSelector } from 'react-redux'
+import { TableRow } from 'mdi-material-ui'
+import { useDispatch } from 'react-redux'
+import { useEffect } from 'react'
+import { getCategories } from 'src/api/category/category-list'
 
-// ** Demo Components Imports
-import CardUser from 'src/views/cards/CardUser'
-import CardImgTop from 'src/views/cards/CardImgTop'
-import CardMobile from 'src/views/cards/CardMobile'
-import CardSupport from 'src/views/cards/CardSupport'
-import CardTwitter from 'src/views/cards/CardTwitter'
-import CardFacebook from 'src/views/cards/CardFacebook'
-import CardLinkedIn from 'src/views/cards/CardLinkedIn'
-import CardAppleWatch from 'src/views/cards/CardAppleWatch'
-import CardMembership from 'src/views/cards/CardMembership'
-import CardInfluencer from 'src/views/cards/CardInfluencer'
-import CardNavigation from 'src/views/cards/CardNavigation'
-import CardWithCollapse from 'src/views/cards/CardWithCollapse'
-import CardVerticalRatings from 'src/views/cards/CardVerticalRatings'
-import CardNavigationCenter from 'src/views/cards/CardNavigationCenter'
-import CardHorizontalRatings from 'src/views/cards/CardHorizontalRatings'
+const TableDense = () => {
+  const category = useSelector((state: RootState) => state.category.data)
+  const dispatch = useDispatch<appDispatch>()
 
-const CardBasic = () => {
+  useEffect(() => {
+    if (category.length <= 2) dispatch(getCategories())
+  }, [category.length, dispatch])
+
   return (
-    <Grid container spacing={6}>
-      <Grid item xs={12} sx={{ paddingBottom: 4 }}>
-        <Typography variant='h5'>Basic Cards</Typography>
-      </Grid>
-      <Grid item xs={12} sm={6} md={4}>
-        <CardImgTop />
-      </Grid>
-      <Grid item xs={12} sm={6} md={4}>
-        <CardUser />
-      </Grid>
-      <Grid item xs={12} sm={6} md={4}>
-        <CardWithCollapse />
-      </Grid>
-      <Grid item xs={12} sm={6}>
-        <CardMobile />
-      </Grid>
-      <Grid item xs={12} sm={6}>
-        <CardHorizontalRatings />
-      </Grid>
-      <Grid item xs={12} sm={6} md={4}>
-        <CardAppleWatch />
-      </Grid>
-      <Grid item xs={12} md={8}>
-        <CardMembership />
-      </Grid>
-      <Grid item xs={12} sm={6} md={4}>
-        <CardInfluencer />
-      </Grid>
-      <Grid item xs={12} sm={6} md={4}>
-        <CardVerticalRatings />
-      </Grid>
-      <Grid item xs={12} sm={6} md={4}>
-        <CardSupport />
-      </Grid>
-      <Grid item xs={12} sx={{ pb: 4, pt: theme => `${theme.spacing(17.5)} !important` }}>
-        <Typography variant='h5'>Navigation Cards</Typography>
-      </Grid>
-      <Grid item xs={12} md={6}>
-        <CardNavigation />
-      </Grid>
-      <Grid item xs={12} md={6}>
-        <CardNavigationCenter />
-      </Grid>
-      <Grid item xs={12} sx={{ pb: 4, pt: theme => `${theme.spacing(17.5)} !important` }}>
-        <Typography variant='h5'>Solid Cards</Typography>
-      </Grid>
-      <Grid item xs={12} sm={6} md={4}>
-        <CardTwitter />
-      </Grid>
-      <Grid item xs={12} sm={6} md={4}>
-        <CardFacebook />
-      </Grid>
-      <Grid item xs={12} sm={6} md={4}>
-        <CardLinkedIn />
-      </Grid>
-    </Grid>
+    <TableContainer component={Paper}>
+      <Table sx={{ minWidth: 650 }} size='small' aria-label='a dense table'>
+        <TableBody>
+          {Array.isArray(category)
+            ? category.map(row => (
+                <TableRow key={row.id} sx={{ '&:last-of-type  td, &:last-of-type  th': { border: 0 } }}>
+                  <TableCell component='th' scope='row'>
+                    {row.description}
+                  </TableCell>
+                  <TableCell component='th' scope='row'>
+                    {row.label}
+                  </TableCell>
+                </TableRow>
+              ))
+            : ''}
+        </TableBody>
+      </Table>
+    </TableContainer>
   )
 }
 
-export default CardBasic
+export default TableDense

@@ -6,7 +6,6 @@ import { CreateCategoryInput } from "src/api/category/category-type";
 import { useNotification } from "src/hooks/use-notification";
 import {  appDispatch } from "src/store";
 import { CategoryForm } from "./category-form";
-import { Turkey } from "mdi-material-ui";
 
 export const CreateCategoryForm = ()=>{
 
@@ -28,22 +27,21 @@ export const CreateCategoryForm = ()=>{
 return (
       <>
       <Stack flexDirection="row" justifyContent="flex-end" sx={{ pb: 1 }}>
-        <Button size="small" onClick={() => setOpen(true)} startIcon={<Add />}>
-          Ajouter une facture
+        <Button size="small" onClick={() => setOpen(true)} >
+          Ajouter la categorie
         </Button>
       </Stack>
       <CategoryForm
       close={() => setOpen(false)}
       submit={handleSubmit}
       title="Nouveau facture"
-      button={t('add')}
+      button='add'
       open={open}
-      loading={true}
-       category={{
+      category={{
         label: "",
         description: "",
         id: ""
-      }}      />
+      }} loading={false}      />
     </>
     )
 }
