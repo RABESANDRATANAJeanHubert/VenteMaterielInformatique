@@ -25,10 +25,10 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/account-settings": [
+    "/icons": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/account-settings.js"
+      "static/chunks/pages/icons.js"
     ],
     "/typography": [
       "static/chunks/webpack.js",

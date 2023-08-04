@@ -13,7 +13,7 @@ import { CacheProvider } from '@emotion/react'
 import type { EmotionCache } from '@emotion/cache'
 
 // ** Config Imports
-import themeConfig from 'src/configs/themeConfig'
+import themeConfig from 'src/configs.ts/themeConfig'
 
 // ** Component Imports
 import UserLayout from 'src/layouts/UserLayout'

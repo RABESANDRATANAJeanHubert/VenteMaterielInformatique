@@ -10,7 +10,7 @@ import { ThemeProvider, createTheme, responsiveFontSizes } from '@mui/material/s
 import { Settings } from 'src/@core/context/settingsContext'
 
 // ** Theme Config
-import themeConfig from 'src/configs/themeConfig'
+import themeConfig from 'src/configs.ts/themeConfig'
 
 // ** Theme Override Imports
 import overrides from './overrides'
