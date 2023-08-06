@@ -1,11 +1,10 @@
 import { LoadingButton } from "@mui/lab";
 import { DialogContent, TextField, DialogActions } from "@mui/material";
 import { useFormik } from "formik";
-import { Box } from "mdi-material-ui";
 import { title } from "process";
 import { Category, CreateCategoryInput } from "src/api/category/category-type";
 
-import Yup from "yup";
+import * as Yup from 'yup';
 import BootstrapDialog from "../common/dialog-style";
 import BootstrapDialogTitle from "../common/dialog-title";
 
@@ -50,7 +49,6 @@ return (
           {title}
         </BootstrapDialogTitle>
         <DialogContent dividers>
-          <Box component="form" noValidate>
             <TextField
               name="label"
               error={!!(formik.touched.label && formik.errors.label)}
@@ -73,7 +71,7 @@ return (
               label="description de paiement"
               sx={{ my: 1 }}
             />
-          </Box>
+
         </DialogContent>
         <DialogActions>
           <LoadingButton loading={loading} onClick={() => formik.handleSubmit()}>

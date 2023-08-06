@@ -5,6 +5,8 @@ import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 import store from 'src/store'
 
+import { useNProgress } from 'src/hooks/use-nprogress'
+
 // ** Loader Import
 import NProgress from 'nprogress'
 
@@ -57,6 +59,7 @@ if (themeConfig.routingLoader) {
 // ** Configure JSS & ClassName
 const App = (props: ExtendedAppProps) => {
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props
+  useNProgress()
 
   // Variables
   const getLayout = Component.getLayout ?? (page => <UserLayout>{page}</UserLayout>)

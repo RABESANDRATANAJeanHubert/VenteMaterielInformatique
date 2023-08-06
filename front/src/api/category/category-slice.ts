@@ -2,6 +2,7 @@ import { createCategoryThunk } from './category-create-thunk'
 import { Category, CategoryAddAction, CategoryDeleteAction } from './category-type'
 import { createSlice } from '@reduxjs/toolkit'
 import { removeCategoryThunk } from './category-remove-thunk'
+import { getCategories } from './category-list'
 
 export type State = {
   data: Category[]
@@ -66,6 +67,23 @@ const slice = createSlice({
       })
       .addCase(removeCategoryThunk.rejected, (state, action) => {
         ;(state.loading = false), (state.data = []), (state.error = action.error.message || '')
+      })
+
+      //  GET CATEGORY list
+
+      .addCase(getCategories.pending,(state)=>{
+        state.loading =  true;
+      })
+      .addCase(getCategories.fulfilled, (state:any,action)=>{
+        state.data =  action.payload,
+        state.error =  '',
+        state.loading =  false,
+        console.log("LISTE FACTURE",state.data)
+      })
+      .addCase(getCategories.rejected,(state,action)=>{
+        state.loading =  false;
+        state.data = [],
+        state.error =  action.error.message || ''
       })
   }
 })

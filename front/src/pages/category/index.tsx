@@ -1,82 +1,108 @@
-// ** MUI Imports
-import Grid from '@mui/material/Grid'
-import Typography from '@mui/material/Typography'
-// ** Demo Components Imports
-import CardUser from 'src/views/cards/CardUser'
-import CardImgTop from 'src/views/cards/CardImgTop'
-import CardMobile from 'src/views/cards/CardMobile'
-import CardSupport from 'src/views/cards/CardSupport'
-import CardTwitter from 'src/views/cards/CardTwitter'
-import CardFacebook from 'src/views/cards/CardFacebook'
-import CardLinkedIn from 'src/views/cards/CardLinkedIn'
-import CardAppleWatch from 'src/views/cards/CardAppleWatch'
-import CardMembership from 'src/views/cards/CardMembership'
-import CardInfluencer from 'src/views/cards/CardInfluencer'
-import CardNavigation from 'src/views/cards/CardNavigation'
-import CardWithCollapse from 'src/views/cards/CardWithCollapse'
-import CardVerticalRatings from 'src/views/cards/CardVerticalRatings'
-import CardNavigationCenter from 'src/views/cards/CardNavigationCenter'
-import CardHorizontalRatings from 'src/views/cards/CardHorizontalRatings'
+import Head from 'next/head';
+import {
+  Box,
+  Container,
+  Stack,
+  Typography,
+  Unstable_Grid2 as Grid,
+  Card,
+  InputAdornment,
+  OutlinedInput,
+  SvgIcon,
+  LinearProgress,
+} from '@mui/material';
+import { ReactElement, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCategories } from 'src/api/category/category-list';
+import { CategoryCard } from 'src/views/category/category-card';
+import { Category } from 'src/api/category/category-type';
+import { RootState, appDispatch } from 'src/store';
+import { CreateCategoryForm } from 'src/views/category/category-create';
 
-const CardBasic = () => {
+type UpdateDialogState = { data?: Category; open: boolean };
+
+const Page = () => {
+  //Get companies list from root state
+  const category = useSelector((state: RootState) => state.category.data);
+  const loading = useSelector((state: RootState) => state.category.loading);
+
+  const [updateDialog, setOpen] = useState<UpdateDialogState>({
+    data: undefined,
+    open: false,
+  });
+
+  const handleClickOpen = (data: Category) => {
+    setOpen({ data, open: true });
+  };
+  const handleClose = () => {
+    setOpen({ data: undefined, open: false });
+  };
+  const dispatch = useDispatch<appDispatch>();
+
+  const [search, setSearch] = useState('');
+
+  useEffect(() => {
+    if (category.length <= 2) dispatch(getCategories());
+  }, [category.length, dispatch]);
+
+
   return (
-    <Grid container spacing={6}>
-      <Grid item xs={12} sx={{ paddingBottom: 4 }}>
-        <Typography variant='h5'>Basic Cards</Typography>
-      </Grid>
-      <Grid item xs={12} sm={6} md={4}>
-        <CardImgTop />
-      </Grid>
-      <Grid item xs={12} sm={6} md={4}>
-        <CardUser />
-      </Grid>
-      <Grid item xs={12} sm={6} md={4}>
-        <CardWithCollapse />
-      </Grid>
-      <Grid item xs={12} sm={6}>
-        <CardMobile />
-      </Grid>
-      <Grid item xs={12} sm={6}>
-        <CardHorizontalRatings />
-      </Grid>
-      <Grid item xs={12} sm={6} md={4}>
-        <CardAppleWatch />
-      </Grid>
-      <Grid item xs={12} md={8}>
-        <CardMembership />
-      </Grid>
-      <Grid item xs={12} sm={6} md={4}>
-        <CardInfluencer />
-      </Grid>
-      <Grid item xs={12} sm={6} md={4}>
-        <CardVerticalRatings />
-      </Grid>
-      <Grid item xs={12} sm={6} md={4}>
-        <CardSupport />
-      </Grid>
-      <Grid item xs={12} sx={{ pb: 4, pt: theme => `${theme.spacing(17.5)} !important` }}>
-        <Typography variant='h5'>Navigation Cards</Typography>
-      </Grid>
-      <Grid item xs={12} md={6}>
-        <CardNavigation />
-      </Grid>
-      <Grid item xs={12} md={6}>
-        <CardNavigationCenter />
-      </Grid>
-      <Grid item xs={12} sx={{ pb: 4, pt: theme => `${theme.spacing(17.5)} !important` }}>
-        <Typography variant='h5'>Solid Cards</Typography>
-      </Grid>
-      <Grid item xs={12} sm={6} md={4}>
-        <CardTwitter />
-      </Grid>
-      <Grid item xs={12} sm={6} md={4}>
-        <CardFacebook />
-      </Grid>
-      <Grid item xs={12} sm={6} md={4}>
-        <CardLinkedIn />
-      </Grid>
-    </Grid>
-  )
-}
+    <>
+      <Head>
+        <title>Sociétés | CMPS</title>
+      </Head>
+      <Box
+        component="main"
+        sx={{
+          flexGrow: 1,
+          py: 2,
+        }}
+      >
+        <Container maxWidth="xl">
+          <Stack spacing={3}>
+            <Stack direction="row" justifyContent="space-between" spacing={4}>
+              <Typography variant="h6">categorie</Typography>
+              <CreateCategoryForm />
+            </Stack>
+            <Card sx={{ p: 2 }}>
+              <OutlinedInput
+                fullWidth
+                value={search}
+                onChange={(event) => setSearch(event.target.value)}
+                placeholder="Chercher ..."
+                startAdornment={
+                  <InputAdornment position="start">
+                    <SvgIcon color="action" fontSize="small">
+                      <MagnifyingGlassIcon />
+                    </SvgIcon>
+                  </InputAdornment>
+                }
+                sx={{ maxWidth: 500 }}
+              />
+            </Card>
+            {loading && (
+              <Box sx={{ width: '100%' }}>
+                <LinearProgress />
+              </Box>
+            )}
+            {category.length > 0 && (
+              <Grid container display="flex" gap={2}>
+                {category.map((ss:any, index:any) => (
+                  <CategoryCard
+                    key={index}
+                    edit={handleClickOpen}
+                    category={ss}
+                  />
+                ))}
+              </Grid>
+            )}
+          </Stack>
+        </Container>
+      </Box>
+    </>
+  );
+};
 
-export default CardBasic
+// Page.getLayout = (page: ReactElement) => <MainLayout>{page}</MainLayout>;
+
+export default Page;
