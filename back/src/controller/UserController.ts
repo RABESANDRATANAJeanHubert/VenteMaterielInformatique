@@ -24,7 +24,7 @@ static  register =  async(req:any, res:any) => {
     user.set('firstName',firstName);
     user.set('lastName', lastName);
     user.set('email', email);
-    user.set('password', password);
+    user.set('password', pwdcrpt);
     user.set('active', true);
     user.set('verified', true);
     user.set('roleId', 1);
