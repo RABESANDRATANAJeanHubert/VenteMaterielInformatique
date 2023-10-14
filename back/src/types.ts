@@ -12,7 +12,14 @@ export interface CategoryAttributes {
   id?: string;
   label: string | undefined;
   description?: string | null;
+}export interface Appartementttributes {
+  id?: string;
+  appartement: string | undefined;
+  loyer?: string | null;
+  surface?: string | null;
+  adresse_postale?: string | null;
 }
+
 export interface ClientAttributes {
   id?: string;
   name: String;
